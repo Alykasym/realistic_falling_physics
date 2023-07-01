@@ -1,0 +1,128 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("./background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative; /* Add position relative */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(2px); /* Apply blur effect to the background image */
+  z-index: -1;
+}
+
+#inputContainer {
+  position: relative;
+  display: inline-block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+}
+
+#inputField {
+  color: #ffffff; /* Set desired text color */
+  font-size: 1.5em;
+  position: relative;
+  transform: translate(45%, 430%);
+  width: 970px;
+  height: 60px;
+  background: none; /* Make the background transparent */
+  border: none; /* Remove the borders */
+  outline: none; /* Remove the outline */
+  box-shadow: none; /* Remove any box shadow */
+  z-index: 1;
+}
+
+
+#imageOverlay {
+  position: absolute;
+  width: 1024px;
+  transform: translate(40%, 150%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.falling {
+  position: absolute;
+  font-size: 1.7em;
+  transition: opacity 2s;
+  color: azure; /* Change this to any color you want */
+  
+}
+
+
+/* Media Query for Tablet */
+@media (min-width: 1300px) and (max-width: 1500px)  {
+  #inputField {
+    width: 700px;
+    transform: translate(45%, 305%);
+    font: 1.3em sans-serif;
+  }
+
+  #imageOverlay {
+    width: 750px;
+    transform: translate(40%, 150%);
+  }
+}
+
+/* Media Query for Tablet */
+@media (min-width: 1075px) and (max-width: 1300px)  {
+  #inputField {
+    width: 600px;
+    transform: translate(57%, 258%);
+    font: 1.3em sans-serif;
+  }
+
+  #imageOverlay {
+    width: 650px;
+    transform: translate(50%, 150%);
+  }
+}
+
+
+/* Media Query for Tablet */
+@media (min-width: 1024px) and (max-width: 1075px)  {
+  #inputField {
+    width: 600px;
+    transform: translate(46%, 258%);
+    font: 1.3em sans-serif;
+  }
+
+  #imageOverlay {
+    width: 650px;
+    transform: translate(40%, 150%);
+  }
+}
+
+/* Media Query for Tablet */
+@media (min-width: 601px) and (max-width: 1024px)  {
+  #inputField {
+    width: 500px;
+    transform: translate(60%, 268%);
+    font: 1em sans-serif;
+  }
+
+  #imageOverlay {
+    width: 550px;
+    transform: translate(50%, 200%);
+  }
+}
