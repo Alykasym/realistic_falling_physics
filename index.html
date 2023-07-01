@@ -11,15 +11,13 @@
         <img id="imageOverlay" src="input_background.png" alt="Image Overlay">
         <input id="inputField" type="text">
       </div>
-
-     <audio id="backgroundMusic" src="background_music.mp3" loop></audio>
-
-  <script>
-    // Play audio after a user interaction (e.g., a click event)
-    document.addEventListener('click', function() {
-      var audio = document.getElementById('backgroundMusic');
-      audio.play();
-    });
-  </script>
+      <audio id="backgroundMusic" src="./background_music.mp3" loop></audio>
+      <script>
+        // Play audio after a user interaction (e.g., a click event)
+        document.addEventListener('click', function() {
+          var audio = document.getElementById('backgroundMusic');
+          audio.play();
+        });
+      </script>
 </body>
 </html>
