@@ -4,11 +4,14 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies;
 
 var engine;
+var audioURL = './falling_sound.wav';
 
 document.addEventListener('DOMContentLoaded', function() {
   var inputField = document.getElementById('inputField');
 
   engine = Engine.create();
+
+  engine.world.gravity.y = 0.25;
 
   Engine.run(engine);
 
@@ -27,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var words = inputField.value.trim().split(" ");
       var word = words[words.length - 1];  // get the last word
       if (word) {
+        var audio = new Audio(audioURL);
+        audio.play();
+
         var spaceWidth = getTextWidth(" ", "22px Arial");  // adjust the font as needed
         var previousWordsWidth = getTextWidth(inputField.value.substring(0, inputField.value.lastIndexOf(" ")), "22px Arial") + spaceWidth * (words.length - 2);  // adjust the font as needed
         var lastWordWidth = getTextWidth(word, "22px Arial");  // adjust the font as needed
@@ -44,18 +50,37 @@ document.addEventListener('DOMContentLoaded', function() {
             torque: Math.random() - 0.5,  // initial angular velocity
           }
         );
+
+        var fallingDot = Bodies.circle(
+          startX - 20,  // start at the middle of the last word, but 20 pixels to the left
+          window.innerHeight / 24,  // start in the center of the screen vertically
+          10,  // radius of the dot
+          {
+            // angle: Math.PI * (Math.random() - 0.5),  // initial rotation
+            // torque: Math.random() - 0.5,  // initial angular velocity
+          }
+        );
         
-        var element = document.createElement('div');
-        element.textContent = word;
-        element.className = 'falling';
-        element.style.position = 'absolute';
-        element.style.left = (window.innerWidth / 3.8) - (word.length * 10) + 'px';
-        element.style.top = (window.innerHeight / 3) - 15 + 'px';
-        document.body.appendChild(element);
+        var elementWord = document.createElement('div');
+        elementWord.textContent = word;
+        elementWord.className = 'falling';
+        elementWord.style.position = 'absolute';
+        elementWord.style.left = (window.innerWidth / 3.8) - (word.length * 10) + 'px';
+        elementWord.style.top = (window.innerHeight / 3) - 15 + 'px';
+        document.body.appendChild(elementWord);
       
-        fallingWord.element = element;
-      
-        World.add(engine.world, [fallingWord]);
+        var elementDot = document.createElement('div');
+        elementDot.textContent = ',';
+        elementDot.className = 'falling';
+        elementDot.style.position = 'absolute';
+        elementDot.style.left = (window.innerWidth / 3.8) - (word.length * 10) - 20 + 'px';
+        elementDot.style.top = (window.innerHeight / 3) - 15 + 'px';
+        document.body.appendChild(elementDot);
+
+        fallingWord.element = elementWord;
+        fallingDot.element = elementDot;
+
+        World.add(engine.world, [fallingWord, fallingDot]);
       }
     } else if (event.key === 'Enter') {
         inputField.value = '';
