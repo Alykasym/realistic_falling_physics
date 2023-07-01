@@ -12,6 +12,14 @@
         <input id="inputField" type="text">
       </div>
 
-    <audio src="background_music.mp3" autoplay loop></audio>
+     <audio id="backgroundMusic" src="background_music.mp3" loop></audio>
+
+  <script>
+    // Play audio after a user interaction (e.g., a click event)
+    document.addEventListener('click', function() {
+      var audio = document.getElementById('backgroundMusic');
+      audio.play();
+    });
+  </script>
 </body>
 </html>
