@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   engine = Engine.create();
 
-  engine.world.gravity.y = 0.25;
+  engine.world.gravity.y = 0.05;
 
   Engine.run(engine);
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(elementWord);
       
         var elementDot = document.createElement('div');
-        elementDot.textContent = ',';
+        elementDot.textContent = '.';
         elementDot.className = 'falling';
         elementDot.style.position = 'absolute';
         elementDot.style.left = (window.innerWidth / 3.8) - (word.length * 10) - 20 + 'px';
